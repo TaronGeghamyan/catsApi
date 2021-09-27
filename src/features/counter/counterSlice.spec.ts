@@ -8,6 +8,7 @@ import counterReducer, {
 describe('counter reducer', () => {
   const initialState: CounterState = {
     value: 3,
+    type:3,
     status: 'idle',
   };
   it('should handle initial state', () => {

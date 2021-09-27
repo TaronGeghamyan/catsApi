@@ -5,6 +5,7 @@ import {
   decrement,
   increment,
   incrementByAmount,
+  setByAmount,
   incrementAsync,
   incrementIfOdd,
   selectCount,
@@ -14,9 +15,9 @@ import styles from './Counter.module.css';
 export function Counter() {
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
-  const [incrementAmount, setIncrementAmount] = useState('2');
+  const [inputAmount, setInputAmount] = useState('2');
 
-  const incrementValue = Number(incrementAmount) || 0;
+  const inputValue = Number(inputAmount) || 0;
 
   return (
     <div>
@@ -41,24 +42,31 @@ export function Counter() {
         <input
           className={styles.textbox}
           aria-label="Set increment amount"
-          value={incrementAmount}
-          onChange={(e) => setIncrementAmount(e.target.value)}
+          value={inputAmount}
+          onChange={(e) => setInputAmount(e.target.value)}
         />
         <button
           className={styles.button}
-          onClick={() => dispatch(incrementByAmount(incrementValue))}
+          onClick={() => dispatch(incrementByAmount(inputValue))}
         >
           Add Amount
         </button>
         <button
+            className={styles.button}
+            onClick={() => dispatch(setByAmount(inputValue))}
+        >
+          Set Amount
+        </button>
+        
+        <button
           className={styles.asyncButton}
-          onClick={() => dispatch(incrementAsync(incrementValue))}
+          onClick={() => dispatch(incrementAsync(inputValue))}
         >
           Add Async
         </button>
         <button
           className={styles.button}
-          onClick={() => dispatch(incrementIfOdd(incrementValue))}
+          onClick={() => dispatch(incrementIfOdd(inputValue))}
         >
           Add If Odd
         </button>
